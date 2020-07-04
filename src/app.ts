@@ -1,18 +1,21 @@
 import express from 'express';
-import DB from './config/database';
+import bodyParser from 'body-parser';
+import { db } from './config/database';
 import logger from './logger';
 
 require('dotenv').config();
 
+if (!db.getState()) {
+  logger.error('Something went wrong with database');
+  process.exit();
+}
+
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(require('./routes/routes'));
+
 const PORT = process.env.PORT || 3000;
-const VERSION = process.env.APP_VERSION || '';
-
-DB.defaults({ users: [], count: 0 }).write();
-
-app.get('/version', (req, res) => {
-  res.send(`Version: ${VERSION}`);
-});
 
 app.listen(PORT, () => {
   logger.success(`[SERVER] listening on port ${PORT}.`);
