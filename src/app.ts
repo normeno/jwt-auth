@@ -1,5 +1,6 @@
 import express from 'express';
 import DB from './config/database';
+import logger from './logger';
 
 require('dotenv').config();
 
@@ -14,5 +15,5 @@ app.get('/version', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}.`);
+  logger.success(`[SERVER] listening on port ${PORT}.`);
 });
