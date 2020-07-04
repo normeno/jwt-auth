@@ -1,15 +1,14 @@
 import express from 'express';
 
+require('dotenv').config();
+
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('The sedulous hyena ate the antelope!');
 });
 
-app.listen(port, (err) => {
-  if (err) {
-    return err;
-  }
-  return `server is listening on ${port}`;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}.`);
 });
