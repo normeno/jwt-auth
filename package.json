@@ -5,6 +5,7 @@
     "main": "index.js",
     "dependencies": {
         "body-parser": "^1.19.0",
+        "chalk": "^4.1.0",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
@@ -25,7 +26,7 @@
     "scripts": {
         "build-ts": "tsc",
         "serve": "node dist/app.js",
-        "serve-debug": "nodemon --inspect dist/app.js --ignore dist/db/db.json",
+        "serve-debug": "nodemon dist/app.js --ignore dist/db/db.json",
         "start": "npm run serve",
         "test": "echo \"Error: no test specified\" && exit 1",
         "watch-debug": "npm run build-ts && npm run serve-debug"
